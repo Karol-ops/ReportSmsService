@@ -1,0 +1,41 @@
+﻿using serwersms;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SmsSender
+{
+    public class Sms
+    {
+        private string _smsAccountLogin;
+        private string _smsAccountPassword;
+        private string _receiverNumber;
+        private string _senderName;
+
+        public Sms(SmsParams smsParams)
+        {
+            _smsAccountLogin = smsParams.SmsAccountLogin;
+            _smsAccountPassword = smsParams.SmsAccountPassword;
+            _receiverNumber = smsParams.ReceiverNumber;
+            _senderName = smsParams.SenderName;
+        }
+
+        public string Send(string smsBody)
+        {
+            try
+            {
+                var serwerssms = new SerwerSMS(_smsAccountLogin, _smsAccountPassword);
+                var data = new Dictionary<string, string> {{ "details", "1" }};
+                var response = serwerssms.messages.sendSms(_receiverNumber, smsBody, _senderName, data).ToString();
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            };
+        }
+    }
+}
