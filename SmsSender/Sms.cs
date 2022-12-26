@@ -1,9 +1,6 @@
-﻿using serwersms;
+﻿using SerwerSMS;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmsSender
 {
@@ -26,9 +23,9 @@ namespace SmsSender
         {
             try
             {
-                var serwerssms = new SerwerSMS(_smsAccountLogin, _smsAccountPassword);
+                var serwerssms = new SerwerSms(_smsAccountLogin, _smsAccountPassword);
                 var data = new Dictionary<string, string> {{ "details", "1" }};
-                var response = serwerssms.messages.sendSms(_receiverNumber, smsBody, _senderName, data).ToString();
+                var response = serwerssms.Messages.SendSms(_receiverNumber, smsBody, _senderName, data).ToString();
 
                 return response;
             }

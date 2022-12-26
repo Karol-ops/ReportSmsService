@@ -21,11 +21,9 @@ namespace ReportSmsService
 
         public ReportSmsService()
         {
-            Logger.Info("1");
             InitializeComponent();
-            Logger.Info("2");
+
             ConfigureReportSmsService();
-            Logger.Info("3");
         }
 
         private void ConfigureReportSmsService()
@@ -59,7 +57,7 @@ namespace ReportSmsService
                 encryptedPassword = _stringCipher.Encrypt(encryptedPassword.Replace(NotEncryptedPasswordPrefix, string.Empty));
 
                 var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                configFile.AppSettings.Settings["SenderEmailPassword"].Value = encryptedPassword;
+                configFile.AppSettings.Settings["SenderSmsPassword"].Value = encryptedPassword;
                 configFile.Save();
             }
 

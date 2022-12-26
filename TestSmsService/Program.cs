@@ -1,9 +1,6 @@
-﻿using serwersms;
+﻿using SerwerSMS;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestSmsService
 {
@@ -36,8 +33,7 @@ namespace TestSmsService
                 //Console.ReadKey(true);
                 try
                 {
-
-                    var serwerssms = new SerwerSMS("webapi_ReportSmsService", "qqqq");
+                    var serwerssms = new SerwerSms("webapi_ReportSmsService", "qqqq");
                     var data = new Dictionary<string, string>();
 
                     // SMS FULL
@@ -46,7 +42,7 @@ namespace TestSmsService
                     String text = "test sms";
                     String sender = "INFORMACJA";
                     data.Add("details", "1");
-                    var response = serwerssms.messages.sendSms(phone, text, sender, data).ToString();
+                    var response = serwerssms.Messages.SendSms(phone, text, sender, data).ToString();
                     Console.WriteLine(response);
 
                 }
